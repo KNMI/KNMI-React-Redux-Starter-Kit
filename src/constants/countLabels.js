@@ -1,0 +1,3 @@
+export const INCREMENT_COUNT = 'INCREMENT_COUNT';
+export const DOUBLE_COUNT = 'DOUBLE_COUNT';
+export const RESET_COUNTER = 'RESET_COUNTER';

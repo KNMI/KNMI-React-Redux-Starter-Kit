@@ -1,0 +1,49 @@
+$radius-size: 0.19rem;
+$shadow: 0.06rem 0.125rem 0.125rem rgba(0,0,0,0.3);
+$inverse-inactive-color: rgba(255, 255, 255, 0.7);
+$inverse-hover-color: #5bc0de;
+$inverse-active-color: white;
+$inverse-inactive-color: #cef;
+$ux-interactive-color: #017daf;
+$ux-interactive-color-checked: #3299cb;
+$ux-interactive-color-active: #017daf;
+$ux-interactive-border-highlight-color: #018cc8;
+$ux-interactive-border-shadow-color: #01729b;
+$ux-interactive-hover-color: #015f8c;
+
+html {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+.canvasLoadingOverlay.canvasDisabled,.canvasLoadingOverlay.timeOverlay.canvasDisabled {
+  background-color: rgba(50, 50, 50, 0.4);
+}
+.canvasLoadingOverlay.timeOverlay{
+  margin-top: -800px;
+  display: block;
+  background-color: rgba(50, 50, 50, 0);
+  width: 480px;
+  height: 800px;
+  z-index: 10000;
+}
+.canvasLoadingOverlay {
+  margin-top: -670px;
+  display: block;
+  background-color: rgba(50, 50, 50, 0);
+  width: 480px;
+  height: 670px;
+  z-index: 10000;
+}
+#root {
+  height: inherit;
+  width: inherit;
+  background-color: #f2fbff;
+}
