@@ -1,5 +1,5 @@
 // This is where action creators are put
-import { INCREMENT_COUNT, DOUBLE_COUNT, RESET_COUNTER } from '../constants/countLabels';
+import { INCREMENT_COUNT, DOUBLE_COUNT } from '../constants/countLabels';
 
 const incrementCounter = () => {
   return {
@@ -7,6 +7,7 @@ const incrementCounter = () => {
   };
 };
 
+/* istanbul ignore next */
 const doubleCounter = () => {
   return (dispatch, getState) => {
     return new Promise((resolve) => {
@@ -20,16 +21,9 @@ const doubleCounter = () => {
   };
 };
 
-const resetCounter = () => {
-  return {
-    type: RESET_COUNTER
-  };
-};
-
 const actions = {
   doubleCounter,
-  incrementCounter,
-  resetCounter
+  incrementCounter
 };
 
 export default actions;

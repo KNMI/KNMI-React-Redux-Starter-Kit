@@ -6,7 +6,6 @@ import { IndexLink, Link } from 'react-router';
 class BaseLayout extends Component {
   render () {
     const { mainContent } = this.props;
-    console.log(this.props);
     return (
       <div className='container text-center'>
         <h1>KNMI React Redux Starter Kit</h1>

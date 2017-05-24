@@ -7,9 +7,8 @@ export default class CounterComponent extends Component {
     return (
       <div>
         {count}
-        <button onClick={() => dispatch(actions.incrementCounter())}>Increment</button>
-        <button onClick={() => dispatch(actions.doubleCounter())}>Double</button>
-        <button onClick={() => dispatch(actions.resetCounter())}>Reset</button>
+        <button id='incrementButton' onClick={() => dispatch(actions.incrementCounter())}>Increment</button>
+        <button id='doubleButton' onClick={() => dispatch(actions.doubleCounter())}>Double</button>
       </div>);
   }
 }
