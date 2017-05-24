@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import locationReducer from './location';
+import locationReducer from '../reducers/location';
 import countReducer from '../reducers/countReducer';
 export const makeRootReducer = () => {
   return combineReducers({
