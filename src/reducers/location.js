@@ -1,17 +1,13 @@
- // ------------------------------------
+import { createAction, handleActions } from 'redux-actions';
+// ------------------------------------
 // Constants
 // ------------------------------------
-export const LOCATION_CHANGE = 'LOCATION_CHANGE';
+const LOCATION_CHANGE = 'LOCATION_CHANGE';
 
 // ------------------------------------
 // Actions
 // ------------------------------------
-export function locationChange (location = '/') {
-  return {
-    type    : LOCATION_CHANGE,
-    payload : location
-  };
-}
+export const locationChange = createAction(LOCATION_CHANGE);
 
 // ------------------------------------
 // Specialized Action Creator
@@ -24,11 +20,6 @@ export const updateLocation = ({ dispatch }) => {
 // Reducer
 // ------------------------------------
 const initialState = null;
-export default function locationReducer (state, action) {
-  if (!state) {
-    state = initialState;
-  }
-  return action && action.type === LOCATION_CHANGE
-    ? action.payload
-    : state;
-}
+export default handleActions({
+  [LOCATION_CHANGE]: (state, { payload }) => Object.assign({}, state, payload)
+}, initialState);

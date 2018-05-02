@@ -3,10 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const project = require('./project.config');
 const debug = require('debug')('app:config:webpack');
 const WebpackStrip = require('strip-loader');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-
-const __PROD__ = project.globals.__PROD__;
 
 debug('Creating awesome webpack configuration.');
 const webpackConfig = {

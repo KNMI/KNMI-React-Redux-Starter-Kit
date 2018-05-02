@@ -21,6 +21,6 @@ const createRoutes = (store) => (
       <Route path='/counter' component={connect(mapStateToCounterProps, mapDispatchToCounterProps)(CounterComponent)} />
     </Switch>
   </BrowserRouter>
-)
+);
 
 export default createRoutes;

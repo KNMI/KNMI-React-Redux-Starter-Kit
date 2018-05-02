@@ -2,9 +2,6 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const project = require('./project.config');
 const debug = require('debug')('app:config:webpack');
-const WebpackStrip = require('strip-loader');
-
-const __PROD__ = project.globals.__PROD__;
 
 debug('Creating awesome webpack configuration.');
 const webpackConfig = {
@@ -65,8 +62,8 @@ webpackConfig.plugins = [
       collapseWhitespace : true
     }
   }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
+  new webpack.HotModuleReplacementPlugin(),
+  new webpack.NoEmitOnErrorsPlugin()
 ];
 
 // ------------------------------------
