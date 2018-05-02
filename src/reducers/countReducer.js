@@ -1,26 +1,20 @@
-import { INCREMENT_COUNT, DOUBLE_COUNT } from '../constants/countLabels';
+import { createAction, handleActions } from 'redux-actions';
+const INCREMENT_COUNT = 'INCREMENT_COUNT';
+const DOUBLE_COUNT = 'DOUBLE_COUNT';
 
-const incrementCount = (state) => {
-  return Object.assign({}, state, { count: state.count + 1 });
-};
-
-const doubleCount = (state) => {
-  return Object.assign({}, state, { count: state.count * 2 });
-};
-
-const ACTION_HANDLERS = {
-  [INCREMENT_COUNT] : (state) => incrementCount(state),
-  [DOUBLE_COUNT]    : (state) => doubleCount(state)
-};
-
-// ------------------------------------
-// Reducer
-// ------------------------------------
-const initialState = { count: 0 };
-export default function countReducer (state = initialState, action) {
-  if (!action) {
-    return state;
-  }
-  const handler = ACTION_HANDLERS[action.type];
-  return handler ? handler(state, action) : state;
+const initialState = {
+  count: 0
 }
+
+const incrementCounter = createAction(INCREMENT_COUNT);
+const doubleCounter = createAction(DOUBLE_COUNT);
+
+export const actions = {
+  incrementCounter,
+  doubleCounter
+}
+
+export default handleActions({
+  [INCREMENT_COUNT]: (state) => Object.assign({}, state, { count: state.count + 1 }),
+  [DOUBLE_COUNT]: (state) => Object.assign({}, state, { count: state.count * 2 })
+}, initialState);

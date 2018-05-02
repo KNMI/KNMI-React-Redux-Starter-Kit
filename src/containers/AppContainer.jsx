@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { hashHistory, Router } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import PropTypes from 'prop-types';
-
+import { hot } from 'react-hot-loader';
 class AppContainer extends Component {
   render () {
     const { routes, store } = this.props;
     return (
       <Provider store={store} >
         <div style={{ height: 'inherit' }}>
-          <Router history={hashHistory} children={routes} />
+          <BrowserRouter children={routes} />
         </div>
       </Provider>
     );
@@ -21,4 +21,4 @@ AppContainer.propTypes = {
   store  : PropTypes.object.isRequired
 };
 
-export default AppContainer;
+export default hot(module)(AppContainer);

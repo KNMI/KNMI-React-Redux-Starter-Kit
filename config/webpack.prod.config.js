@@ -3,8 +3,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const project = require('./project.config');
 const debug = require('debug')('app:config:webpack');
 const WebpackStrip = require('strip-loader');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
-const __DEV__ = project.globals.__DEV__;
 const __PROD__ = project.globals.__PROD__;
 
 debug('Creating awesome webpack configuration.');
@@ -30,9 +31,7 @@ const webpackConfig = {
 const APP_ENTRY = project.paths.client('main.js');
 
 webpackConfig.entry = {
-  app : __DEV__
-    ? [APP_ENTRY].concat(`webpack-hot-middleware/client?path=${project.compiler_public_path}__webpack_hmr`)
-    : [APP_ENTRY],
+  app : [APP_ENTRY],
   libs: project.compiler_vendors
 };
 
@@ -59,45 +58,28 @@ webpackConfig.externals['react/addons'] = true;
 webpackConfig.plugins = [
   new webpack.DefinePlugin(project.globals),
   new HtmlWebpackPlugin({
-    template : project.paths.client('index.html'),
-    hash     : false,
-    favicon  : project.paths.public('favicon.ico'),
-    filename : 'index.html',
-    inject   : 'body',
-    minify   : {
-      collapseWhitespace : true
+    template: project.paths.client('index.html'),
+    hash: false,
+    favicon: project.paths.public('favicon.ico'),
+    filename: 'index.html',
+    inject: 'body',
+    minify: {
+      collapseWhitespace: true
     }
-  })
-];
+  }),
 
-if (__DEV__) {
-  debug('Enabling plugins for live development (HMR, NoErrors).');
-  webpackConfig.plugins.push(
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoEmitOnErrorsPlugin()
-  );
-} else if (__PROD__) {
-  debug('Enabling plugins for production (OccurenceOrder, Dedupe & UglifyJS).');
-  webpackConfig.plugins.push(
-    new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress : {
-        unused    : true,
-        dead_code : true,
-        warnings  : false
-      },
-      sourceMap: true
-    }),
-    new webpack.optimize.AggressiveMergingPlugin()
-  );
-}
+  new webpack.optimize.OccurrenceOrderPlugin(),
+  new UglifyJSPlugin({
+    sourceMap: true
+  }),
+  new webpack.optimize.AggressiveMergingPlugin(),
+  new webpack.NoEmitOnErrorsPlugin()
+];
 
 // ------------------------------------
 // Loaders
 // ------------------------------------
 // JavaScript / JSON
-// /^(?!.*(main|reducers|test\.(test|spec)\.js$)).*\.jsx?$/
-// /(node_modules|test|\.(test|spec)\.js$)/
 webpackConfig.module.rules = [
   {
     test    : /\.(js|jsx)$/,
@@ -110,13 +92,13 @@ webpackConfig.module.rules = [
     test    : /\.json$/,
     loader  : 'json-loader',
     enforce : 'pre'
+  },
+  {
+    // Remove debug statements in production
+    test: /\.js$/,
+    loader: WebpackStrip.loader('debug', 'console.log', 'console.debug')
   }
 ];
-
-// Remove debug statements in production
-if (__PROD__) {
-  webpackConfig.module.rules.push({ test: /\.js$/, loader: WebpackStrip.loader('debug', 'console.log', 'console.debug') });
-}
 
 // ------------------------------------
 // Style Loaders

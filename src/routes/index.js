@@ -1,17 +1,26 @@
-// We only need to import the modules necessary for initial render
-import BaseLayout from '../layouts/BaseLayout';
-import HomeRoute from './HomeRoute';
-import CounterRoute from './CounterRoute';
-/*  Note: Instead of using JSX, we recommend using react-router
-    PlainRoute objects to build route definitions.   */
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import MainComponent from '../components/MainComponent';
+import CounterComponent from '../components/CounterComponent';
+import { connect } from 'react-redux';
+import { actions as countActions } from '../reducers/countReducer';
+const mapStateToCounterProps = (state) => {
+  return { ...state.countState };
+};
 
-export const createRoutes = (store) => ({
-  path: '/',
-  component: BaseLayout,
-  indexRoute: HomeRoute(store),
-  childRoutes: [
-    CounterRoute()
-  ]
-});
+const mapDispatchToCounterProps = function (dispatch) {
+  return ({
+    dispatch: dispatch,
+    actions: countActions
+  });
+};
+const createRoutes = (store) => (
+  <BrowserRouter>
+    <Switch>
+      <Route exact path='/' component={MainComponent} />
+      <Route path='/counter' component={connect(mapStateToCounterProps, mapDispatchToCounterProps)(CounterComponent)} />
+    </Switch>
+  </BrowserRouter>
+)
 
 export default createRoutes;

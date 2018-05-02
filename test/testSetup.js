@@ -3,6 +3,11 @@ import sinon from 'sinon';
 import chaiAsPromised from 'chai-as-promised';
 import dirtyChai from 'dirty-chai';
 import sinonChai from 'sinon-chai';
+import enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+enzyme.configure({ adapter: new Adapter() });
+
 const { JSDOM } = require('jsdom');
 
 chai.use(chaiAsPromised);
