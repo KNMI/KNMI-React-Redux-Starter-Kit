@@ -23,7 +23,7 @@ describe('(Store) countReducer', () => {
   });
 
   it('will increment when the increment action is called', () => {
-    _dispatchSpy(actions.incrementCounter());
+    _dispatchSpy(actions.incrementCount());
     const incrementedState = _getStateSpy();
     expect(incrementedState).to.exist();
     expect(incrementedState).to.have.property('count');

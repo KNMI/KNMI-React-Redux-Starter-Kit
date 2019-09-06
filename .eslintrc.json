@@ -34,7 +34,7 @@
     "object-curly-spacing" : [2, "always"]
   },
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": 7,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true

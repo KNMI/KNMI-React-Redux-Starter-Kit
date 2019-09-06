@@ -1,9 +1,16 @@
 {
   "presets": [
-    "es2016",
-    "es2015",
-    "react",
-    "stage-3"
+    [
+      "@babel/env",
+      {
+        "loose": true,
+        "modules": "commonjs",
+        "targets": {
+          "browsers": "last 2 versions"
+        }
+      }
+    ],
+    "@babel/preset-react"
   ],
   "env": {
     "test": {
@@ -13,6 +20,10 @@
     }
   },
   "plugins": [
+    "@babel/plugin-proposal-function-bind",
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-syntax-dynamic-import",
     "react-hot-loader/babel"
   ]
 }

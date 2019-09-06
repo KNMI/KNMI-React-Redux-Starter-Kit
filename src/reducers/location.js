@@ -19,7 +19,7 @@ export const updateLocation = ({ dispatch }) => {
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = null;
+const initialState = { location: null };
 export default handleActions({
-  [LOCATION_CHANGE]: (state, { payload }) => Object.assign({}, state, payload)
+  [locationChange]: (state, { payload }) => ({ ...state, location: payload })
 }, initialState);

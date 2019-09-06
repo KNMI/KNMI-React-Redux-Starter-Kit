@@ -42,10 +42,15 @@ const config = {
     colors : true
   },
   compiler_vendors : [
+    'ip',
     'react',
+    'react-dom',
     'react-redux',
     'react-router',
-    'redux'
+    'react-router-dom',
+    'redux',
+    'redux-actions',
+    'redux-thunk'
   ]
 };
 
@@ -64,13 +69,13 @@ Edit at Your Own Risk
 // N.B.: globals added here must _also_ be added to .eslintrc
 config.globals = {
   'process.env'  : {
-    'NODE_ENV' : JSON.stringify(config.env)
+    NODE_ENV : JSON.stringify(config.env)
   },
-  'NODE_ENV'     : config.env,
-  '__DEV__'      : config.env === 'development',
-  '__PROD__'     : config.env === 'production',
-  '__COVERAGE__' : !argv.watch && config.env === 'test',
-  '__BASENAME__' : JSON.stringify(process.env.BASENAME || '')
+  NODE_ENV     : config.env,
+  __DEV__      : config.env === 'development',
+  __PROD__     : config.env === 'production',
+  __COVERAGE__ : !argv.watch && config.env === 'test',
+  __BASENAME__ : JSON.stringify(process.env.BASENAME || '')
 };
 
 // ------------------------------------

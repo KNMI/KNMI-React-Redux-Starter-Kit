@@ -1,6 +1,19 @@
 Changelog
 =========
 
+KNMI - 0.0.3
+------------
+### Features
+* Upgraded many packages to the latest available release
+* Upgraded from Babel 6 to Babel 7
+* Upgraded `node-sass` and `sass-loader` to work with Node v12
+* Removed `instanbul` dependency
+* Fixed the redux-action and its tests.
+
+### Improvements
+* Linting available for files with different extension (.js, .jsx, .json).
+* Fix in project configuration.
+
 KNMI - 0.0.1
 ------------
 ### Improvements

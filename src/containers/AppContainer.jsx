@@ -7,7 +7,7 @@ class AppContainer extends Component {
   render () {
     const { routes, store } = this.props;
     return (
-      <Provider store={store} >
+      <Provider store={store}>
         <div style={{ height: 'inherit' }}>
           <BrowserRouter children={routes} />
         </div>

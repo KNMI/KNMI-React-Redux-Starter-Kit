@@ -19,7 +19,10 @@ global.chai = chai;
 global.sinon = sinon;
 global.should = chai.should();
 
-const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
+const jsdom = new JSDOM('<!doctype html><html><body></body></html>', {
+  url: 'http://localhost/',
+  pretendToBeVisual: true
+});
 const { window } = jsdom;
 
 global.window = window;
