@@ -112,7 +112,7 @@
     "jsdom": "^15.1.1",
     "jsdom-global": "^3.0.2",
     "mocha": "^6.2.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "nodemon": "^1.19.2",
     "nyc": "^14.1.1",
     "postcss-loader": "^3.0.0",
